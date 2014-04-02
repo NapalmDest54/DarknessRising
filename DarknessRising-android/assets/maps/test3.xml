@@ -124,10 +124,10 @@
                     </Scale>
                     <TintColor>
                         <R>200</R>
-                        <G>125</G>
+                        <G>0</G>
                         <B>255</B>
                         <A>200</A>
-                        <PackedValue>3368582655</PackedValue>
+                        <PackedValue>3368550655</PackedValue>
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
