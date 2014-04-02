@@ -23,4 +23,9 @@ public class Gleed2DMap {
 			layer.render(textureHelper, camera);
 		}
 	}
+
+	public TextureHelper getTextureHelper() {
+		// TODO Auto-generated method stub
+		return textureHelper;
+	}
 }

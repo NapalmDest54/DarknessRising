@@ -56,6 +56,9 @@ public class Gleed2DMapLoader {
 				tile.setScaleX(Float.parseFloat(item.getChildByName("Scale").getChildByName("X").getText()));
 				tile.setScaleY(Float.parseFloat(item.getChildByName("Scale").getChildByName("Y").getText()));
 				
+				float rotation = Float.parseFloat(item.getChildByName("Rotation").getText());
+				tile.setRotation(rotation);
+				tile.prepareSprite(map.getTextureHelper());
 			} else if (itemType.equals("RectangleItem")) {
 				
 			}

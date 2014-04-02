@@ -94,7 +94,7 @@
                         <Y>-128</Y>
                     </Position>
                     <CustomProperties />
-                    <Rotation>0</Rotation>
+                    <Rotation>0.136463881</Rotation>
                     <Scale>
                         <X>1</X>
                         <Y>1</Y>
@@ -148,10 +148,10 @@
                         <Y>-320</Y>
                     </Position>
                     <CustomProperties />
-                    <Rotation>0</Rotation>
+                    <Rotation>-0.882077456</Rotation>
                     <Scale>
-                        <X>3.89744449</X>
-                        <Y>3.89744449</Y>
+                        <X>2.72288942</X>
+                        <Y>2.72288942</Y>
                     </Scale>
                     <TintColor>
                         <R>255</R>
@@ -178,7 +178,7 @@
     </Layers>
     <CustomProperties />
     <EditorRelated>
-        <NextItemNumber>16</NextItemNumber>
+        <NextItemNumber>20</NextItemNumber>
         <ContentRootFolder>C:\</ContentRootFolder>
         <CameraPosition>
             <X>91.66686</X>
