@@ -1,0 +1,12 @@
+
+skeleton.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sprites/player
+  rotate: false
+  xy: 2, 2
+  size: 64, 61
+  orig: 64, 64
+  offset: 0, 1
+  index: -1
