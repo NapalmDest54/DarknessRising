@@ -5,8 +5,15 @@ filter: Linear,Linear
 repeat: none
 sprites/player
   rotate: false
-  xy: 2, 2
+  xy: 68, 5
   size: 64, 61
   orig: 64, 64
   offset: 0, 1
+  index: -1
+textures/tiles2
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
   index: -1
