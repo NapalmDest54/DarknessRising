@@ -3,141 +3,6 @@
     <Layers>
         <Layer Name="groundLayer01" Visible="true">
             <Items>
-                <Item xsi:type="TextureItem" Name="Texture_0001" Visible="true">
-                    <Position>
-                        <X>128</X>
-                        <Y>-128</Y>
-                    </Position>
-                    <CustomProperties />
-                    <Rotation>0</Rotation>
-                    <Scale>
-                        <X>1</X>
-                        <Y>1</Y>
-                    </Scale>
-                    <TintColor>
-                        <R>255</R>
-                        <G>255</G>
-                        <B>255</B>
-                        <A>255</A>
-                        <PackedValue>4294967295</PackedValue>
-                    </TintColor>
-                    <FlipHorizontally>false</FlipHorizontally>
-                    <FlipVertically>false</FlipVertically>
-                    <texture_filename>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\grass01_256.jpg</texture_filename>
-                    <asset_name>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\grass01_256</asset_name>
-                    <Origin>
-                        <X>128</X>
-                        <Y>128</Y>
-                    </Origin>
-                </Item>
-                <Item xsi:type="TextureItem" Name="Texture_0002" Visible="true">
-                    <Position>
-                        <X>-256</X>
-                        <Y>-256</Y>
-                    </Position>
-                    <CustomProperties />
-                    <Rotation>0</Rotation>
-                    <Scale>
-                        <X>1</X>
-                        <Y>1</Y>
-                    </Scale>
-                    <TintColor>
-                        <R>255</R>
-                        <G>255</G>
-                        <B>255</B>
-                        <A>255</A>
-                        <PackedValue>4294967295</PackedValue>
-                    </TintColor>
-                    <FlipHorizontally>false</FlipHorizontally>
-                    <FlipVertically>false</FlipVertically>
-                    <texture_filename>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles.jpg</texture_filename>
-                    <asset_name>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles</asset_name>
-                    <Origin>
-                        <X>256</X>
-                        <Y>256</Y>
-                    </Origin>
-                </Item>
-                <Item xsi:type="TextureItem" Name="Texture_0004" Visible="true">
-                    <Position>
-                        <X>512</X>
-                        <Y>-128</Y>
-                    </Position>
-                    <CustomProperties />
-                    <Rotation>0</Rotation>
-                    <Scale>
-                        <X>1</X>
-                        <Y>1</Y>
-                    </Scale>
-                    <TintColor>
-                        <R>255</R>
-                        <G>255</G>
-                        <B>255</B>
-                        <A>255</A>
-                        <PackedValue>4294967295</PackedValue>
-                    </TintColor>
-                    <FlipHorizontally>false</FlipHorizontally>
-                    <FlipVertically>false</FlipVertically>
-                    <texture_filename>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles256.jpg</texture_filename>
-                    <asset_name>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles256</asset_name>
-                    <Origin>
-                        <X>128</X>
-                        <Y>128</Y>
-                    </Origin>
-                </Item>
-                <Item xsi:type="TextureItem" Name="Texture_0006" Visible="true">
-                    <Position>
-                        <X>256</X>
-                        <Y>-448</Y>
-                    </Position>
-                    <CustomProperties />
-                    <Rotation>0</Rotation>
-                    <Scale>
-                        <X>1</X>
-                        <Y>1</Y>
-                    </Scale>
-                    <TintColor>
-                        <R>255</R>
-                        <G>255</G>
-                        <B>255</B>
-                        <A>255</A>
-                        <PackedValue>4294967295</PackedValue>
-                    </TintColor>
-                    <FlipHorizontally>false</FlipHorizontally>
-                    <FlipVertically>false</FlipVertically>
-                    <texture_filename>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles2.jpg</texture_filename>
-                    <asset_name>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles2</asset_name>
-                    <Origin>
-                        <X>32</X>
-                        <Y>32</Y>
-                    </Origin>
-                </Item>
-                <Item xsi:type="TextureItem" Name="Texture_0007" Visible="true">
-                    <Position>
-                        <X>320</X>
-                        <Y>-320</Y>
-                    </Position>
-                    <CustomProperties />
-                    <Rotation>0</Rotation>
-                    <Scale>
-                        <X>1.99551678</X>
-                        <Y>1.99551678</Y>
-                    </Scale>
-                    <TintColor>
-                        <R>255</R>
-                        <G>255</G>
-                        <B>255</B>
-                        <A>255</A>
-                        <PackedValue>4294967295</PackedValue>
-                    </TintColor>
-                    <FlipHorizontally>false</FlipHorizontally>
-                    <FlipVertically>false</FlipVertically>
-                    <texture_filename>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles2.jpg</texture_filename>
-                    <asset_name>Users\Christopher\Documents\DarknessRisingNew\my-gdx-game-android\assets\data\textures\tiles2</asset_name>
-                    <Origin>
-                        <X>32</X>
-                        <Y>32</Y>
-                    </Origin>
-                </Item>
                 <Item xsi:type="CircleItem" Name="Circle_0008" Visible="true">
                     <Position>
                         <X>192</X>
@@ -169,6 +34,141 @@
                         <PackedValue>2445279424</PackedValue>
                     </FillColor>
                 </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0010" Visible="true">
+                    <Position>
+                        <X>128</X>
+                        <Y>-128</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\grass01_256.jpg</texture_filename>
+                    <asset_name>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\grass01_256</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0011" Visible="true">
+                    <Position>
+                        <X>-256</X>
+                        <Y>-256</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles.jpg</texture_filename>
+                    <asset_name>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles</asset_name>
+                    <Origin>
+                        <X>256</X>
+                        <Y>256</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0012" Visible="true">
+                    <Position>
+                        <X>512</X>
+                        <Y>-128</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles256.jpg</texture_filename>
+                    <asset_name>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles256</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0015" Visible="true">
+                    <Position>
+                        <X>128</X>
+                        <Y>-448</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles2.jpg</texture_filename>
+                    <asset_name>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles2</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0016" Visible="true">
+                    <Position>
+                        <X>320</X>
+                        <Y>-320</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>3.89744449</X>
+                        <Y>3.89744449</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles2.jpg</texture_filename>
+                    <asset_name>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles2</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
             </Items>
             <ScrollSpeed>
                 <X>1</X>
@@ -178,7 +178,7 @@
     </Layers>
     <CustomProperties />
     <EditorRelated>
-        <NextItemNumber>9</NextItemNumber>
+        <NextItemNumber>16</NextItemNumber>
         <ContentRootFolder>C:\</ContentRootFolder>
         <CameraPosition>
             <X>91.66686</X>

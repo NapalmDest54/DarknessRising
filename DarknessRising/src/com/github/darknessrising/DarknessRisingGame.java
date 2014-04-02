@@ -26,6 +26,7 @@ public class DarknessRisingGame implements ApplicationListener {
 		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera(w, h);
+		//camera.translate(400, 400);
 		batch = new SpriteBatch();
 
 		texture = new Texture(
@@ -55,7 +56,9 @@ public class DarknessRisingGame implements ApplicationListener {
 		} else if (Gdx.input.isKeyPressed(Keys.S)) {
 			camera.translate(0, -movementspeed);
 			camera.update(true);
-		} else if (Gdx.input.isKeyPressed(Keys.A)) {
+		} 
+		
+		if (Gdx.input.isKeyPressed(Keys.A)) {
 			camera.translate(-movementspeed, 0);
 			camera.update(true);
 		} else if (Gdx.input.isKeyPressed(Keys.D)) {
@@ -66,7 +69,7 @@ public class DarknessRisingGame implements ApplicationListener {
 
 	@Override
 	public void resize(int width, int height) {
-		camera.setToOrtho(false, width, height);
+		//camera.setToOrtho(false, width, height);
 	}
 
 	@Override
