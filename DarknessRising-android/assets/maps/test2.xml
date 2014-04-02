@@ -80,7 +80,7 @@
                         <PackedValue>4294967295</PackedValue>
                     </TintColor>
                     <FlipHorizontally>true</FlipHorizontally>
-                    <FlipVertically>false</FlipVertically>
+                    <FlipVertically>true</FlipVertically>
                     <texture_filename>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles.jpg</texture_filename>
                     <asset_name>Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets\data\textures\tiles</asset_name>
                     <Origin>

@@ -14,8 +14,23 @@ public class Tile {
 	private Vector2 position = new Vector2();
 	private float scaleX = 1;
 	private float scaleY = 1;
+	public boolean isFlipVertically() {
+		return flipVertically;
+	}
+	public void setFlipVertically(boolean flipVertically) {
+		this.flipVertically = flipVertically;
+	}
+	public boolean isFlipHorizontally() {
+		return flipHorizontally;
+	}
+	public void setFlipHorizontally(boolean flipHorizontally) {
+		this.flipHorizontally = flipHorizontally;
+	}
+
 	private Sprite sprite = new Sprite();
 	private Color colorTint = new Color(1, 1, 1, 1);
+	private boolean flipVertically= false;
+	private boolean flipHorizontally = false;
 	
 	public float getRotation() {
 		return rotation;
@@ -55,6 +70,7 @@ public class Tile {
 		sprite.setRotation(MathUtils.radiansToDegrees * rotation);
 		sprite.setPosition(position.x - sprite.getWidth() / 2 , position.y - sprite.getHeight() / 2);
 		sprite.setColor(colorTint);
+		sprite.flip(flipHorizontally, flipVertically);
 	}
 	
 	public void render(SpriteBatch spriteBatch, TextureHelper textureHelper) {

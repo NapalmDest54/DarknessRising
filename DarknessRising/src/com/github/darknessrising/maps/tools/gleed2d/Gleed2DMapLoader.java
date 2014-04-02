@@ -66,6 +66,9 @@ public class Gleed2DMapLoader {
 				float alpha = Integer.parseInt(item.getChildByName("TintColor").getChildByName("A").getText()) / 255f;
 				tile.setTint(red, green, blue, alpha);
 				
+				// Flipping
+				tile.setFlipHorizontally(Boolean.parseBoolean(item.getChildByName("FlipHorizontally").getText()));
+				tile.setFlipVertically(Boolean.parseBoolean(item.getChildByName("FlipVertically").getText()));
 				
 				tile.prepareSprite(map.getTextureHelper());
 			} else if (itemType.equals("RectangleItem")) {
