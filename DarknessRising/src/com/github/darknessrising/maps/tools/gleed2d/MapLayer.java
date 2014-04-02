@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MapLayer {
 
-	private String name = "";
+	private String name = "null";
 	private boolean isVisible = true;
 	private HashMap<String, Gleed2DMapObject> mapObjects = new HashMap<String, Gleed2DMapObject>();
 	private ArrayList<Tile> tiles = new ArrayList<Tile>();
