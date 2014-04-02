@@ -53,6 +53,9 @@ public class Gleed2DMapLoader {
 				int yPos = -1 * Integer.parseInt(item.getChildByName("Position").getChildByName("Y").getText());
 				tile.setPosition(xPos, yPos);
 				
+				tile.setScaleX(Float.parseFloat(item.getChildByName("Scale").getChildByName("X").getText()));
+				tile.setScaleY(Float.parseFloat(item.getChildByName("Scale").getChildByName("Y").getText()));
+				
 			} else if (itemType.equals("RectangleItem")) {
 				
 			}

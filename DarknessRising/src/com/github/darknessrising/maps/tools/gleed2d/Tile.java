@@ -21,13 +21,26 @@ public class Tile {
 	public int getId() {
 		return id;
 	}
+	public float getScaleX() {
+		return scaleX;
+	}
+	public void setScaleX(float scaleX) {
+		this.scaleX = scaleX;
+	}
+	public float getScaleY() {
+		return scaleY;
+	}
+	public void setScaleY(float scaleY) {
+		this.scaleY = scaleY;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}
 	public void render(SpriteBatch spriteBatch, TextureHelper textureHelper) {
 		Texture texture = textureHelper.getTexture(id);
-		
-		spriteBatch.draw(texture, position.x- texture.getWidth() / 2, position.y - texture.getHeight() / 2, texture.getWidth() * scaleX, texture.getHeight() * scaleY);
+		float sclWidth = texture.getWidth() * scaleX;
+		float sclHeight = texture.getHeight() * scaleY;
+		spriteBatch.draw(texture, position.x- sclWidth / 2, position.y - sclHeight / 2, sclWidth, sclHeight);
 	}
 	public void setPosition(int xPos, int yPos) {
 		position.x = xPos;
