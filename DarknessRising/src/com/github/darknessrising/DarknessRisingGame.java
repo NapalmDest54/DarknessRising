@@ -1,5 +1,7 @@
 package com.github.darknessrising;
 
+import com.github.darknessrising.gameobjects.GameObject;
+import com.github.darknessrising.gameobjects.components.render.SpineComponent;
 import com.github.darknessrising.input.InputHelper;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMap;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMapLoader;
@@ -20,14 +22,14 @@ public class DarknessRisingGame implements ApplicationListener {
 	private Texture texture;
 	private Gleed2DMap map;
 	int movementspeed = 5;
-	
+	public static boolean DEBUG = true;
+	SpineComponent spineTest;
 	@Override
 	public void create() {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 
 		camera = new OrthographicCamera(w, h);
-		//camera.translate(400, 400);
 		batch = new SpriteBatch();
 
 		texture = new Texture(
@@ -37,6 +39,8 @@ public class DarknessRisingGame implements ApplicationListener {
 		map = loader.load("maps/test3.xml");
 		
 		Gdx.input.setInputProcessor(new InputHelper());
+		
+		spineTest = new SpineComponent(new GameObject(), "data/spines/player/exports/skeleton");
 	}
 
 	@Override
@@ -52,7 +56,7 @@ public class DarknessRisingGame implements ApplicationListener {
 
 		batch.setProjectionMatrix(camera.combined);
 		map.render(camera);
-
+		spineTest.render(camera);
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			camera.translate(0, movementspeed);
 		} else if (Gdx.input.isKeyPressed(Keys.S)) {
