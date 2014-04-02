@@ -1,7 +1,11 @@
 package com.github.darknessrising;
 
+import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMap;
+import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMapLoader;
+
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,25 +18,21 @@ public class DarknessRisingGame implements ApplicationListener {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Texture texture;
-	private Sprite sprite;
-	
+	private Gleed2DMap map;
+	int movementspeed = 5;
 	@Override
-	public void create() {		
+	public void create() {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
-		
-		camera = new OrthographicCamera(1, h/w);
+
+		camera = new OrthographicCamera(w, h);
 		batch = new SpriteBatch();
-		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
-		
-		sprite = new Sprite(region);
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+
+		texture = new Texture(
+				Gdx.files.internal("data/textures/grass01_256.jpg"));
+
+		Gleed2DMapLoader loader = new Gleed2DMapLoader();
+		map = loader.load("maps/test2.xml");
 	}
 
 	@Override
@@ -42,18 +42,31 @@ public class DarknessRisingGame implements ApplicationListener {
 	}
 
 	@Override
-	public void render() {		
+	public void render() {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+
 		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
+		map.render(camera);
+
+		if (Gdx.input.isKeyPressed(Keys.W)) {
+			camera.translate(0, movementspeed);
+			camera.update(true);
+		} else if (Gdx.input.isKeyPressed(Keys.S)) {
+			camera.translate(0, -movementspeed);
+			camera.update(true);
+		} else if (Gdx.input.isKeyPressed(Keys.A)) {
+			camera.translate(-movementspeed, 0);
+			camera.update(true);
+		} else if (Gdx.input.isKeyPressed(Keys.D)) {
+			camera.translate(movementspeed, 0);
+			camera.update(true);
+		}
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		camera.setToOrtho(false, width, height);
 	}
 
 	@Override
