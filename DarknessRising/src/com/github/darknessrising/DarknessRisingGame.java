@@ -1,8 +1,8 @@
 package com.github.darknessrising;
 
+import com.github.darknessrising.input.InputHelper;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMap;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMapLoader;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -20,6 +20,7 @@ public class DarknessRisingGame implements ApplicationListener {
 	private Texture texture;
 	private Gleed2DMap map;
 	int movementspeed = 5;
+	
 	@Override
 	public void create() {
 		float w = Gdx.graphics.getWidth();
@@ -34,6 +35,8 @@ public class DarknessRisingGame implements ApplicationListener {
 
 		Gleed2DMapLoader loader = new Gleed2DMapLoader();
 		map = loader.load("maps/test2.xml");
+		
+		Gdx.input.setInputProcessor(new InputHelper());
 	}
 
 	@Override
@@ -52,19 +55,19 @@ public class DarknessRisingGame implements ApplicationListener {
 
 		if (Gdx.input.isKeyPressed(Keys.W)) {
 			camera.translate(0, movementspeed);
-			camera.update(true);
 		} else if (Gdx.input.isKeyPressed(Keys.S)) {
 			camera.translate(0, -movementspeed);
-			camera.update(true);
 		} 
 		
 		if (Gdx.input.isKeyPressed(Keys.A)) {
 			camera.translate(-movementspeed, 0);
-			camera.update(true);
 		} else if (Gdx.input.isKeyPressed(Keys.D)) {
 			camera.translate(movementspeed, 0);
-			camera.update(true);
 		}
+		
+		camera.zoom += ((InputHelper) Gdx.input.getInputProcessor()).getMouseScroll() / 25f;
+		camera.update(true);
+		((InputHelper) Gdx.input.getInputProcessor()).tick();
 	}
 
 	@Override

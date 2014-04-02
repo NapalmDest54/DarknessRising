@@ -58,6 +58,15 @@ public class Gleed2DMapLoader {
 				
 				float rotation = Float.parseFloat(item.getChildByName("Rotation").getText());
 				tile.setRotation(rotation);
+				
+				// Tinting
+				float red = Integer.parseInt(item.getChildByName("TintColor").getChildByName("R").getText()) / 255f;
+				float green = Integer.parseInt(item.getChildByName("TintColor").getChildByName("B").getText()) / 255f;
+				float blue = Integer.parseInt(item.getChildByName("TintColor").getChildByName("G").getText()) / 255f;
+				float alpha = Integer.parseInt(item.getChildByName("TintColor").getChildByName("A").getText()) / 255f;
+				tile.setTint(red, green, blue, alpha);
+				
+				
 				tile.prepareSprite(map.getTextureHelper());
 			} else if (itemType.equals("RectangleItem")) {
 				

@@ -1,5 +1,6 @@
 package com.github.darknessrising.maps.tools.gleed2d;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,6 +15,7 @@ public class Tile {
 	private float scaleX = 1;
 	private float scaleY = 1;
 	private Sprite sprite = new Sprite();
+	private Color colorTint = new Color(1, 1, 1, 1);
 	
 	public float getRotation() {
 		return rotation;
@@ -39,6 +41,12 @@ public class Tile {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setTint(float r, float g, float b, float a) {
+		colorTint.set(r, g, b, a);
+	}
+	public Color getTint() {
+		return colorTint;
+	}
 	
 	public void prepareSprite(TextureHelper textureHelper) {
 		Texture texture = textureHelper.getTexture(id);
@@ -46,6 +54,7 @@ public class Tile {
 		sprite.setScale(scaleX, scaleY);
 		sprite.setRotation(MathUtils.radiansToDegrees * rotation);
 		sprite.setPosition(position.x - sprite.getWidth() / 2 , position.y - sprite.getHeight() / 2);
+		sprite.setColor(colorTint);
 	}
 	
 	public void render(SpriteBatch spriteBatch, TextureHelper textureHelper) {
