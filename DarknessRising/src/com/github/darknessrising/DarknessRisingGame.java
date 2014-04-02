@@ -34,7 +34,7 @@ public class DarknessRisingGame implements ApplicationListener {
 				Gdx.files.internal("data/textures/grass01_256.jpg"));
 
 		Gleed2DMapLoader loader = new Gleed2DMapLoader();
-		map = loader.load("maps/test2.xml");
+		map = loader.load("maps/test3.xml");
 		
 		Gdx.input.setInputProcessor(new InputHelper());
 	}
