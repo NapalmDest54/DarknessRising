@@ -16,7 +16,7 @@ public class TextureHelper implements Disposable {
 			return path.substring(path.indexOf("assets\\") + 7, path.length());
 		}
 		
-		return null;
+		return path;
 	}
 	
 	public void loadAndAdd(int key, String texture) {
