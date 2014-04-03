@@ -1,10 +1,18 @@
 package com.github.darknessrising.gameobjects.components.render;
 
+import java.util.LinkedList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.esotericsoftware.spine.AnimationState;
 import com.esotericsoftware.spine.AnimationStateData;
 import com.esotericsoftware.spine.Skeleton;
@@ -12,8 +20,12 @@ import com.esotericsoftware.spine.SkeletonData;
 import com.esotericsoftware.spine.SkeletonJson;
 import com.esotericsoftware.spine.SkeletonRenderer;
 import com.esotericsoftware.spine.SkeletonRendererDebug;
+import com.esotericsoftware.spine.Slot;
+import com.esotericsoftware.spine.attachments.Attachment;
+import com.esotericsoftware.spine.attachments.BoundingBoxAttachment;
 import com.github.darknessrising.DarknessRisingGame;
 import com.github.darknessrising.gameobjects.GameObject;
+import com.github.darknessrising.gameobjects.components.PhysicsComponent;
 
 public class SpineComponent extends RenderComponent {
 	private Skeleton skeleton;
@@ -21,8 +33,10 @@ public class SpineComponent extends RenderComponent {
 	private SkeletonRendererDebug debugRenderer;
 	private PolygonSpriteBatch spriteBatchPoly = new PolygonSpriteBatch();
 	private AnimationState state;
+	private Body boundingBody;
 	Texture tex;
-	public SpineComponent(GameObject owner, String spinePath) {
+	
+	public SpineComponent(GameObject owner, String spinePath, World world) {
 		super(owner);
 		renderer = new SkeletonRenderer();
 		debugRenderer = new SkeletonRendererDebug();
@@ -31,8 +45,7 @@ public class SpineComponent extends RenderComponent {
 		SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal(spinePath + ".json"));
 
 		skeleton = new Skeleton(skeletonData); // Skeleton holds skeleton state (bone positions, slot attachments, etc).
-		skeleton.setX(10);
-		skeleton.setY(-100);
+		
 		tex = new Texture(Gdx.files.internal("data/sprites/player.png"));
 		
 		AnimationStateData stateData = new AnimationStateData(skeletonData);
@@ -41,6 +54,29 @@ public class SpineComponent extends RenderComponent {
 		
 		debugRenderer.setBones(true);
 		debugRenderer.setRegionAttachments(true);
+		for (Slot slot : skeleton.getSlots()) {
+			Attachment attachment = slot.getAttachment();
+			if (attachment instanceof BoundingBoxAttachment && attachment.getName().equals("bounding-body")) {
+				BoundingBoxAttachment boundBox = (BoundingBoxAttachment) attachment;
+				BodyDef bd = new BodyDef();
+				bd.position.x = 0;
+				bd.position.y = 0;
+				PolygonShape shape = new PolygonShape();
+				shape.set(boundBox.getVertices());
+				bd.type = BodyType.KinematicBody;
+				boundingBody = world.createBody(bd);
+				boundingBody.createFixture(shape, 1);
+				
+			}
+		}
+	}
+	
+	public Body getBoundingBody() {
+		return boundingBody;
+	}
+	
+	public Vector2 getPosition() {
+		return (new Vector2(boundingBody.getPosition().x, boundingBody.getPosition().y)).scl(PhysicsComponent.METERS_TO_PIXELS);
 	}
 
 	@Override
@@ -50,7 +86,8 @@ public class SpineComponent extends RenderComponent {
 				state.update(Gdx.graphics.getDeltaTime());
 				state.apply(skeleton);
 			}
-			
+			skeleton.setX(boundingBody.getPosition().x * PhysicsComponent.METERS_TO_PIXELS);
+			skeleton.setY(boundingBody.getPosition().y * PhysicsComponent.METERS_TO_PIXELS);
 			skeleton.updateWorldTransform();
 			spriteBatchPoly.getProjectionMatrix().set(camera.combined);
 			spriteBatchPoly.begin();
