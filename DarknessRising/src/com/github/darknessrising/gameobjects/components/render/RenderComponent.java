@@ -10,7 +10,7 @@ import com.github.evms.eventmangement.EventManager;
 
 public abstract class RenderComponent extends Component implements EventHandler {
 	protected SpriteBatch spriteBatch;
-	
+	protected int renderLevel = 0;
 	public RenderComponent(GameObject owner) {
 		super(owner);
 		spriteBatch = new SpriteBatch();
@@ -21,7 +21,7 @@ public abstract class RenderComponent extends Component implements EventHandler 
 
 	@Override
 	public void onEvent(Event event) {
-		if (event.equals("EVENT_RENDER_CALL")) {
+		if (event.getType().equals("EVENT_RENDER_CALL")) {
 			render((OrthographicCamera) event.getParams()[0]);
 		}
 	}

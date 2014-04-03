@@ -1,10 +1,14 @@
 package com.github.darknessrising;
 
 import com.github.darknessrising.gameobjects.GameObject;
+import com.github.darknessrising.gameobjects.GameObjectFactory;
+import com.github.darknessrising.gameobjects.components.PhysicsComponent;
+import com.github.darknessrising.gameobjects.components.PlayerControlableComponent;
 import com.github.darknessrising.gameobjects.components.render.SpineComponent;
 import com.github.darknessrising.input.InputHelper;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMap;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMapLoader;
+import com.github.evms.eventmangement.EventManager;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -15,6 +19,10 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 
 public class DarknessRisingGame implements ApplicationListener {
 	private OrthographicCamera camera;
@@ -23,7 +31,9 @@ public class DarknessRisingGame implements ApplicationListener {
 	private Gleed2DMap map;
 	int movementspeed = 5;
 	public static boolean DEBUG = true;
-	SpineComponent spineTest;
+	GameObject player;
+	private World world;
+	Box2DDebugRenderer phyiscsDebugRenderer;
 	@Override
 	public void create() {
 		float w = Gdx.graphics.getWidth();
@@ -39,8 +49,10 @@ public class DarknessRisingGame implements ApplicationListener {
 		map = loader.load("maps/test3.xml");
 		
 		Gdx.input.setInputProcessor(new InputHelper());
-		
-		spineTest = new SpineComponent(new GameObject(), "data/spines/player/exports/skeleton");
+		world = new World(new Vector2(0, 0), true);
+		player = GameObjectFactory.getSpinedCharacter("data/spines/player/exports/skeleton", world);
+		player.placeComponent("ControlComp", new PlayerControlableComponent(player));
+		phyiscsDebugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
 	}
 
 	@Override
@@ -56,22 +68,21 @@ public class DarknessRisingGame implements ApplicationListener {
 
 		batch.setProjectionMatrix(camera.combined);
 		map.render(camera);
-		spineTest.render(camera);
-		if (Gdx.input.isKeyPressed(Keys.W)) {
-			camera.translate(0, movementspeed);
-		} else if (Gdx.input.isKeyPressed(Keys.S)) {
-			camera.translate(0, -movementspeed);
-		} 
+		phyiscsDebugRenderer.render(world, camera.combined);
 		
-		if (Gdx.input.isKeyPressed(Keys.A)) {
-			camera.translate(-movementspeed, 0);
-		} else if (Gdx.input.isKeyPressed(Keys.D)) {
-			camera.translate(movementspeed, 0);
-		}
+		EventManager.getInstance().raiseImmediateEvent(EventManager.getInstance().getNewEvent("EVENT_RENDER_CALL", camera));
+		
+		
 		
 		camera.zoom += ((InputHelper) Gdx.input.getInputProcessor()).getMouseScroll() / 25f;
+		Vector2 pos = ((SpineComponent) player.getComponent("SpineComp")).getPosition();
+		camera.position.x = pos.x;
+		camera.position.y = pos.y;
 		camera.update(true);
+		EventManager.getInstance().raiseImmediateEvent(EventManager.getInstance().getNewEvent("EVENT_UPDATE_CALL", camera));
+		EventManager.getInstance().tick();
 		((InputHelper) Gdx.input.getInputProcessor()).tick();
+		world.step(1/60f, 6, 2);
 	}
 
 	@Override
