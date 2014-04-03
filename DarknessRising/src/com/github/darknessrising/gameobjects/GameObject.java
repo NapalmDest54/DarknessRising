@@ -13,6 +13,7 @@ public class GameObject {
 	
 	public GameObject() {
 		guid = UUID.randomUUID().toString();
+		componentMap = new HashMap<String, Component>();
 		EventManager.getInstance().raiseEvent(EventManager.getInstance().getNewEvent("EVENT_GAMEOBJECT_CREATED", guid));
 	}
 	
@@ -34,6 +35,7 @@ public class GameObject {
 		if (componentMap.containsKey(key)) {
 			return false;
 		}
+		componentMap.put(key, component);
 		return true;
 	}
 	
