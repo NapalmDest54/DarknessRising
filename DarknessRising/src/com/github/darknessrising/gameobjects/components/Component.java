@@ -4,7 +4,7 @@ import com.github.darknessrising.gameobjects.GameObject;
 
 public abstract class Component {
 	
-	private GameObject owner;
+	protected GameObject owner;
 	
 	public Component(GameObject owner) {
 		this.owner = owner;
