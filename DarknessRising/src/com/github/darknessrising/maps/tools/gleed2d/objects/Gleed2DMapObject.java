@@ -15,6 +15,7 @@ public class Gleed2DMapObject {
 	private Vector2 position = new Vector2();
 	private MapProperties mapProperties = new MapProperties();
 	private Color fillColor = new Color();
+	private float rotation;
 
 	public Vector2 getPosition() {
 		return position;
@@ -51,5 +52,14 @@ public class Gleed2DMapObject {
 		fillColor.b = blue;
 		fillColor.a = alpha;
 	}
+
+	public float getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(float rotation) {
+		this.rotation = rotation;
+	}
+
 
 }

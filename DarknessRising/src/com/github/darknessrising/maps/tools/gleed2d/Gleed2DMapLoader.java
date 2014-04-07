@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.github.darknessrising.gameobjects.GameObject;
+import com.github.darknessrising.gameobjects.components.MapObjectUpdater;
 import com.github.darknessrising.gameobjects.components.PhysicsComponent;
 import com.github.darknessrising.maps.tools.gleed2d.objects.CircleMapObject;
 import com.github.darknessrising.maps.tools.gleed2d.objects.Gleed2DMapObject;
@@ -102,9 +103,10 @@ public class Gleed2DMapLoader {
 				processMapObject(mapObject, item);
 			} else if (itemType.equals("CircleItem")) {
 				CircleMapObject mapObject = new CircleMapObject();
+				mapObject.setRadius(Float.parseFloat(item.getChildByName("Radius").getText()));
 				mapLayer.addMapObject(mapObject);
 				processMapObject(mapObject, item);
-				mapObject.setRadius(Float.parseFloat(item.getChildByName("Radius").getText()));
+				
 			}
 		}
 	}
@@ -138,21 +140,29 @@ public class Gleed2DMapLoader {
 				} else { // treat as static
 					type = BodyType.StaticBody;
 				}
+				bodyDef.type = type;
+				
+				bodyDef.position.x = mapObject.getPosition().x * PhysicsComponent.PIXELS_TO_METERS;
+				bodyDef.position.y = mapObject.getPosition().y * PhysicsComponent.PIXELS_TO_METERS;
 				if (mapObject instanceof CircleMapObject) {
 					shape = new CircleShape();
 					shape.setRadius(((CircleMapObject) mapObject).getRadius()  * PhysicsComponent.PIXELS_TO_METERS);
 				} else {
 					shape = new PolygonShape();
-					((PolygonShape) shape).setAsBox(((RectangleMapObject) mapObject).getWidth()  * PhysicsComponent.PIXELS_TO_METERS / 2f, ((RectangleMapObject) mapObject).getHeight() * PhysicsComponent.PIXELS_TO_METERS / 2f);
+					float width = ((RectangleMapObject) mapObject).getWidth()  * PhysicsComponent.PIXELS_TO_METERS / 2f;
+					float height = ((RectangleMapObject) mapObject).getHeight()  * PhysicsComponent.PIXELS_TO_METERS / 2f;
+					((PolygonShape) shape).setAsBox(width, height);
+					bodyDef.position.x += width;
+					bodyDef.position.y -= height;
 				}
-				bodyDef.type = type;
-				bodyDef.position.x = mapObject.getPosition().x * PhysicsComponent.PIXELS_TO_METERS;
-				bodyDef.position.y = mapObject.getPosition().y * PhysicsComponent.PIXELS_TO_METERS;
+				
+				MapObjectUpdater update = new MapObjectUpdater(obj, mapObject);
 				Body body = world.createBody(bodyDef);
 				body.createFixture(shape, 1);
 				
 				PhysicsComponent physicsComp = new PhysicsComponent(obj, body);
 				obj.placeComponent("PhysicsComp", physicsComp);
+				obj.placeComponent("MapObjectUpdater", physicsComp);
 			}
 		}
 	}

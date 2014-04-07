@@ -27,7 +27,7 @@ public class PhysicsComponent extends Component implements EventHandler {
 		eventManager.registerEvent("EVENT_UPDATE_CALL", this);
 		eventManager.registerEvent("EVENT_APPLY_VELOCITY_CENTER", this);
 		body.setLinearVelocity(0, 0);
-		body.setLinearDamping(0.1f);
+		body.setLinearDamping(0.2f);
 		
 	}
 	
