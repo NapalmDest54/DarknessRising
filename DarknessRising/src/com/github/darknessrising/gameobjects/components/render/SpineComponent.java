@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -62,8 +63,12 @@ public class SpineComponent extends RenderComponent {
 				bd.position.x = 0;
 				bd.position.y = 0;
 				PolygonShape shape = new PolygonShape();
-				shape.set(boundBox.getVertices());
-				bd.type = BodyType.KinematicBody;
+				float[] vertices = boundBox.getVertices();
+				for (int i = 0; i < vertices.length; i++) {
+					vertices[0] = vertices[0] * PhysicsComponent.PIXELS_TO_METERS;
+				}
+				shape.setAsBox(10 * PhysicsComponent.PIXELS_TO_METERS, 10  * PhysicsComponent.PIXELS_TO_METERS);
+				bd.type = BodyType.DynamicBody;
 				boundingBody = world.createBody(bd);
 				boundingBody.createFixture(shape, 1);
 				
@@ -89,14 +94,17 @@ public class SpineComponent extends RenderComponent {
 			skeleton.setX(boundingBody.getPosition().x * PhysicsComponent.METERS_TO_PIXELS);
 			skeleton.setY(boundingBody.getPosition().y * PhysicsComponent.METERS_TO_PIXELS);
 			skeleton.updateWorldTransform();
+			Matrix4 combined = new Matrix4(camera.combined);
+			
 			spriteBatchPoly.getProjectionMatrix().set(camera.combined);
+			
 			spriteBatchPoly.begin();
 			renderer.draw(spriteBatchPoly, skeleton);
 			spriteBatchPoly.end();
 			
 			
 			if (DarknessRisingGame.DEBUG) {
-				debugRenderer.getShapeRenderer().getProjectionMatrix().set(camera.combined);
+				debugRenderer.getShapeRenderer().getProjectionMatrix().set(camera.projection);
 				debugRenderer.draw(skeleton);
 			}
 			

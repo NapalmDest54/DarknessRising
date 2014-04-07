@@ -88,7 +88,7 @@
                         <Y>-192</Y>
                     </Position>
                     <CustomProperties />
-                    <Rotation>0</Rotation>
+                    <Rotation>4.712311</Rotation>
                     <Scale>
                         <X>1</X>
                         <Y>1</Y>
@@ -115,7 +115,7 @@
                         <Y>-64</Y>
                     </Position>
                     <CustomProperties />
-                    <Rotation>-0.55644536</Rotation>
+                    <Rotation>-0.5323672</Rotation>
                     <Scale>
                         <X>1.01063144</X>
                         <Y>1.01063144</Y>
@@ -136,29 +136,45 @@
                         <Y>128</Y>
                     </Origin>
                 </Item>
-                <Item xsi:type="CircleItem" Name="Circle_0014" Visible="true">
+                <Item xsi:type="TextureItem" Name="Texture_0024" Visible="true">
                     <Position>
-                        <X>-704</X>
-                        <Y>-384</Y>
+                        <X>64</X>
+                        <Y>-64</Y>
                     </Position>
                     <CustomProperties />
-                    <Radius>202.385773</Radius>
-                    <FillColor>
-                        <R>192</R>
-                        <G>0</G>
-                        <B>192</B>
-                        <A>145</A>
-                        <PackedValue>2445279424</PackedValue>
-                    </FillColor>
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.251100063</X>
+                        <Y>0.251100063</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>data\textures\tiles512.jpg</texture_filename>
+                    <asset_name>data\textures\tiles512</asset_name>
+                    <Origin>
+                        <X>256</X>
+                        <Y>256</Y>
+                    </Origin>
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0016" Visible="true">
                     <Position>
                         <X>-128</X>
-                        <Y>-320</Y>
+                        <Y>-256</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>256</Width>
-                    <Height>64</Height>
+                    <CustomProperties>
+                        <Property Name="box2d" Type="string" Description="">
+                            <string>static</string>
+                        </Property>
+                    </CustomProperties>
+                    <Width>246</Width>
+                    <Height>224</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -176,11 +192,11 @@
     </Layers>
     <CustomProperties />
     <EditorRelated>
-        <NextItemNumber>20</NextItemNumber>
+        <NextItemNumber>24</NextItemNumber>
         <ContentRootFolder>C:\Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets</ContentRootFolder>
         <CameraPosition>
-            <X>83.33351</X>
-            <Y>-66.6668</Y>
+            <X>-166.666977</X>
+            <Y>-233.333725</Y>
         </CameraPosition>
         <Version>1.3.0.0</Version>
     </EditorRelated>

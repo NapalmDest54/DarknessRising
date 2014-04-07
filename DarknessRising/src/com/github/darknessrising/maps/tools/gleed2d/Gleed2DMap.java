@@ -28,4 +28,8 @@ public class Gleed2DMap {
 		// TODO Auto-generated method stub
 		return textureHelper;
 	}
+	
+	public ArrayList<MapLayer> getLayers() {
+		return mapLayers;
+	}
 }

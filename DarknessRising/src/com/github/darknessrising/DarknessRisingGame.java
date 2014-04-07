@@ -8,6 +8,7 @@ import com.github.darknessrising.gameobjects.components.render.SpineComponent;
 import com.github.darknessrising.input.InputHelper;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMap;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMapLoader;
+import com.github.darknessrising.maps.tools.gleed2d.Gleed2dDebugRenderer;
 import com.github.evms.eventmangement.EventManager;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -34,11 +35,13 @@ public class DarknessRisingGame implements ApplicationListener {
 	GameObject player;
 	private World world;
 	Box2DDebugRenderer phyiscsDebugRenderer;
+	Gleed2dDebugRenderer debugMapRenderer;
+	
 	@Override
 	public void create() {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
-
+		world = new World(new Vector2(0, 0), true);
 		camera = new OrthographicCamera(w, h);
 		batch = new SpriteBatch();
 
@@ -46,13 +49,14 @@ public class DarknessRisingGame implements ApplicationListener {
 				Gdx.files.internal("data/textures/grass01_256.jpg"));
 
 		Gleed2DMapLoader loader = new Gleed2DMapLoader();
-		map = loader.load("maps/test3.xml");
+		map = loader.load("maps/test3.xml", world);
 		
 		Gdx.input.setInputProcessor(new InputHelper());
-		world = new World(new Vector2(0, 0), true);
+		
 		player = GameObjectFactory.getSpinedCharacter("data/spines/player/exports/skeleton", world);
 		player.placeComponent("ControlComp", new PlayerControlableComponent(player));
 		phyiscsDebugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
+		debugMapRenderer = new Gleed2dDebugRenderer();
 	}
 
 	@Override
@@ -68,10 +72,10 @@ public class DarknessRisingGame implements ApplicationListener {
 
 		batch.setProjectionMatrix(camera.combined);
 		map.render(camera);
-		phyiscsDebugRenderer.render(world, camera.combined);
+		
 		
 		EventManager.getInstance().raiseImmediateEvent(EventManager.getInstance().getNewEvent("EVENT_RENDER_CALL", camera));
-		
+		debugMapRenderer.draw(batch, map);
 		
 		
 		camera.zoom += ((InputHelper) Gdx.input.getInputProcessor()).getMouseScroll() / 25f;
@@ -82,6 +86,8 @@ public class DarknessRisingGame implements ApplicationListener {
 		EventManager.getInstance().raiseImmediateEvent(EventManager.getInstance().getNewEvent("EVENT_UPDATE_CALL", camera));
 		EventManager.getInstance().tick();
 		((InputHelper) Gdx.input.getInputProcessor()).tick();
+		
+		phyiscsDebugRenderer.render(world, camera.combined);
 		world.step(1/60f, 6, 2);
 	}
 

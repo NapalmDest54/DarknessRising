@@ -1,6 +1,6 @@
 package com.github.darknessrising.maps.tools.gleed2d.objects;
 
-public class CircleMapObject {
+public class CircleMapObject extends Gleed2DMapObject{
 	private float radius;
 
 	public float getRadius() {

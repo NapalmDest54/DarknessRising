@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.github.darknessrising.maps.tools.gleed2d.objects.Gleed2DMapObject;
-
+import com.github.darknessrising.maps.tools.gleed2d.objects.RectangleMapObject;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -12,7 +12,7 @@ public class MapLayer {
 
 	private String name = "null";
 	private boolean isVisible = true;
-	private HashMap<String, Gleed2DMapObject> mapObjects = new HashMap<String, Gleed2DMapObject>();
+	private ArrayList<Gleed2DMapObject> mapObjects = new ArrayList<Gleed2DMapObject>();
 	private ArrayList<Tile> tiles = new ArrayList<Tile>();
 	private HashMap<String, String> properties = new HashMap<String, String>();
 	private SpriteBatch spriteBatch = new SpriteBatch();
@@ -28,7 +28,7 @@ public class MapLayer {
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
-	public HashMap<String, Gleed2DMapObject> getMapObjects() {
+	public ArrayList<Gleed2DMapObject> getMapObjects() {
 		return mapObjects;
 	}
 	public HashMap<String, String> getProperties() {
@@ -45,6 +45,9 @@ public class MapLayer {
 	}
 	public void addTile(Tile tile) {
 		tiles.add(tile);
+	}
+	public void addMapObject(Gleed2DMapObject mapObject) {
+		mapObjects.add(mapObject);
 	}
 	
 }

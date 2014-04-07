@@ -43,7 +43,7 @@ public class PhysicsComponent extends Component implements EventHandler {
 			update();
 		} else if (event.getType().equals("EVENT_APPLY_VELOCITY_CENTER")) {
 			if (event.getParams()[0].equals(owner)) {
-				body.setLinearVelocity(((Vector2)event.getParams()[1]).x * 5, ((Vector2)event.getParams()[1]).y * 5);
+				body.setLinearVelocity(((Vector2)event.getParams()[1]).x * 2, ((Vector2)event.getParams()[1]).y * 2);
 			}
 		}
 		
