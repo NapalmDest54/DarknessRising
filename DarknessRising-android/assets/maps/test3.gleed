@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Level>
+  <LevelProperties>
+    <Name>Root</Name>
+    <Id>0</Id>
+    <Visible>true</Visible>
+    <Position>
+      <X>0</X>
+      <Y>0</Y>
+    </Position>
+    <CustomProperties />
+    <ContentRootFolder>C:\Users\Christopher\Documents\DarknessRising\DarknessRising-android\assets</ContentRootFolder>
+    <NextItemNumber>13</NextItemNumber>
+    <CameraPosition>
+      <X>-108.333565</X>
+      <Y>-325.000519</Y>
+    </CameraPosition>
+    <Version>2.0.0.0</Version>
+  </LevelProperties>
+  <Layers>
+    <Layer Name="Layer_0">
+      <LayerProperties>
+        <Name>Layer_0</Name>
+        <Id>0</Id>
+        <Visible>true</Visible>
+        <Position>
+          <X>0</X>
+          <Y>0</Y>
+        </Position>
+        <CustomProperties />
+        <ScrollSpeed>
+          <X>1</X>
+          <Y>1</Y>
+        </ScrollSpeed>
+      </LayerProperties>
+      <Editors>
+        <Editor ClrTypeOfEditor="0" ClrTypeOfProperties="1" Name="Texture_1">
+          <TextureItemProperties>
+            <Name>Texture_1</Name>
+            <Id>1397066561</Id>
+            <Visible>true</Visible>
+            <Position>
+              <X>128</X>
+              <Y>-128</Y>
+            </Position>
+            <CustomProperties />
+            <Rotation>0</Rotation>
+            <Scale>
+              <X>1</X>
+              <Y>1</Y>
+            </Scale>
+            <TintColor>
+              <R>255</R>
+              <G>255</G>
+              <B>255</B>
+              <A>255</A>
+              <PackedValue>4294967295</PackedValue>
+            </TintColor>
+            <FlipHorizontally>false</FlipHorizontally>
+            <FlipVertically>false</FlipVertically>
+            <IsTemplate>false</IsTemplate>
+            <TexturePathRelativeToContentRoot>data\textures\grass01_256.jpg</TexturePathRelativeToContentRoot>
+            <Origin>
+              <X>128</X>
+              <Y>128</Y>
+            </Origin>
+          </TextureItemProperties>
+        </Editor>
+        <Editor ClrTypeOfEditor="0" ClrTypeOfProperties="1" Name="Texture_2">
+          <TextureItemProperties>
+            <Name>Texture_2</Name>
+            <Id>1397066575</Id>
+            <Visible>true</Visible>
+            <Position>
+              <X>-256</X>
+              <Y>-256</Y>
+            </Position>
+            <CustomProperties />
+            <Rotation>0</Rotation>
+            <Scale>
+              <X>1.56633914</X>
+              <Y>1.56633914</Y>
+            </Scale>
+            <TintColor>
+              <R>255</R>
+              <G>255</G>
+              <B>255</B>
+              <A>255</A>
+              <PackedValue>4294967295</PackedValue>
+            </TintColor>
+            <FlipHorizontally>false</FlipHorizontally>
+            <FlipVertically>false</FlipVertically>
+            <IsTemplate>false</IsTemplate>
+            <TexturePathRelativeToContentRoot>data\textures\tiles.jpg</TexturePathRelativeToContentRoot>
+            <Origin>
+              <X>256</X>
+              <Y>256</Y>
+            </Origin>
+          </TextureItemProperties>
+        </Editor>
+        <Editor ClrTypeOfEditor="2" ClrTypeOfProperties="3" Name="Circle_12">
+          <CircleItemProperties>
+            <Name>Circle_12</Name>
+            <Id>1397068760</Id>
+            <Visible>true</Visible>
+            <Position>
+              <X>-115</X>
+              <Y>-10</Y>
+            </Position>
+            <CustomProperties>
+              <Property Name="box2d" Type="string" Description="dynamic">
+                <string />
+              </Property>
+            </CustomProperties>
+            <Radius>36</Radius>
+            <FillColor>
+              <R>192</R>
+              <G>0</G>
+              <B>192</B>
+              <A>145</A>
+              <PackedValue>2445279424</PackedValue>
+            </FillColor>
+          </CircleItemProperties>
+        </Editor>
+        <Editor ClrTypeOfEditor="4" ClrTypeOfProperties="5" Name="Rectangle_13">
+          <RectangleItemProperties>
+            <Name>Rectangle_13</Name>
+            <Id>1397068773</Id>
+            <Visible>true</Visible>
+            <Position>
+              <X>-15</X>
+              <Y>-467</Y>
+            </Position>
+            <CustomProperties>
+              <Property Name="box2d" Type="string" Description="static">
+                <string />
+              </Property>
+            </CustomProperties>
+            <Width>352</Width>
+            <Height>157</Height>
+            <FillColor>
+              <R>192</R>
+              <G>10</G>
+              <B>192</B>
+              <A>145</A>
+              <PackedValue>2445281984</PackedValue>
+            </FillColor>
+            <Rotation>-3.448109</Rotation>
+          </RectangleItemProperties>
+        </Editor>
+      </Editors>
+    </Layer>
+  </Layers>
+  <TypeMap>
+    <Type Name="Gleed2D.Plugins.TextureItemEditor, Gleed2D.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Index="0" />
+    <Type Name="Gleed2D.InGame.TextureItemProperties, Gleed2D.InGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Index="1" />
+    <Type Name="Gleed2D.Plugins.CircleItemEditor, Gleed2D.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Index="2" />
+    <Type Name="Gleed2D.InGame.CircleItemProperties, Gleed2D.InGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Index="3" />
+    <Type Name="Gleed2D.Plugins.RectangleItemEditor, Gleed2D.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Index="4" />
+    <Type Name="Gleed2D.InGame.RectangleItemProperties, Gleed2D.InGame, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Index="5" />
+  </TypeMap>
+</Level>
