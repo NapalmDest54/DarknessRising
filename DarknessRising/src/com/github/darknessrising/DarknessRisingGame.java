@@ -27,6 +27,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class DarknessRisingGame implements ApplicationListener {
 	private OrthographicCamera camera;
+	public static OrthographicCamera debugCamera;
 	private SpriteBatch batch;
 	private Gleed2DMap map;
 	int movementspeed = 5;
@@ -42,6 +43,7 @@ public class DarknessRisingGame implements ApplicationListener {
 		float h = Gdx.graphics.getHeight();
 		world = new World(new Vector2(0, 0), true);
 		camera = new OrthographicCamera(w, h);
+		debugCamera = new OrthographicCamera(w, h);
 		batch = new SpriteBatch();
 
 		Gleed2DMapLoader loader = new Gleed2DMapLoader();
@@ -82,7 +84,13 @@ public class DarknessRisingGame implements ApplicationListener {
 		EventManager.getInstance().tick();
 		((InputHelper) Gdx.input.getInputProcessor()).tick();
 		
-		phyiscsDebugRenderer.render(world, camera.combined);
+		if (DEBUG) {
+			debugCamera.zoom = camera.zoom * 1/100f;
+			debugCamera.position.x = camera.position.x * 1/100f;
+			debugCamera.position.y = camera.position.y * 1/100f;
+			debugCamera.update(true);
+			phyiscsDebugRenderer.render(world, debugCamera.combined);
+		}
 		world.step(1/60f, 6, 2);
 	}
 
