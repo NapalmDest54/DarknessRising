@@ -28,7 +28,6 @@ import com.badlogic.gdx.physics.box2d.World;
 public class DarknessRisingGame implements ApplicationListener {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
-	private Texture texture;
 	private Gleed2DMap map;
 	int movementspeed = 5;
 	public static boolean DEBUG = true;
@@ -45,11 +44,8 @@ public class DarknessRisingGame implements ApplicationListener {
 		camera = new OrthographicCamera(w, h);
 		batch = new SpriteBatch();
 
-		texture = new Texture(
-				Gdx.files.internal("data/textures/grass01_256.jpg"));
-
 		Gleed2DMapLoader loader = new Gleed2DMapLoader();
-		map = loader.load("maps/test3.xml", world);
+		map = loader.load("maps/test3.gleed", world);
 		
 		Gdx.input.setInputProcessor(new InputHelper());
 		
@@ -62,7 +58,6 @@ public class DarknessRisingGame implements ApplicationListener {
 	@Override
 	public void dispose() {
 		batch.dispose();
-		texture.dispose();
 	}
 
 	@Override
