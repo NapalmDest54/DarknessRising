@@ -6,7 +6,7 @@ repeat: none
 sprites/player
   rotate: false
   xy: 2, 2
-  size: 64, 61
+  size: 61, 64
   orig: 64, 64
-  offset: 0, 1
+  offset: 2, 0
   index: -1
