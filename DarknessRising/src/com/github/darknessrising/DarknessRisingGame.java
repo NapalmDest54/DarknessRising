@@ -73,7 +73,13 @@ public class DarknessRisingGame implements ApplicationListener {
 		
 		EventManager.getInstance().raiseImmediateEvent(EventManager.getInstance().getNewEvent("EVENT_RENDER_CALL", camera));
 		debugMapRenderer.draw(batch, map);
-		
+		if (DEBUG) {
+			debugCamera.zoom = camera.zoom * 1/100f;
+			debugCamera.position.x = camera.position.x * 1/100f;
+			debugCamera.position.y = camera.position.y * 1/100f;
+			debugCamera.update(true);
+			phyiscsDebugRenderer.render(world, debugCamera.combined);
+		}
 		
 		camera.zoom += ((InputHelper) Gdx.input.getInputProcessor()).getMouseScroll() / 25f;
 		Vector2 pos = ((SpineComponent) player.getComponent("SpineComp")).getPosition();
@@ -84,13 +90,7 @@ public class DarknessRisingGame implements ApplicationListener {
 		EventManager.getInstance().tick();
 		((InputHelper) Gdx.input.getInputProcessor()).tick();
 		
-		if (DEBUG) {
-			debugCamera.zoom = camera.zoom * 1/100f;
-			debugCamera.position.x = camera.position.x * 1/100f;
-			debugCamera.position.y = camera.position.y * 1/100f;
-			debugCamera.update(true);
-			phyiscsDebugRenderer.render(world, debugCamera.combined);
-		}
+		
 		world.step(1/60f, 6, 2);
 	}
 
