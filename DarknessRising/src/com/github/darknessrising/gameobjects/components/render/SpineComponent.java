@@ -8,10 +8,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -66,13 +68,12 @@ public class SpineComponent extends RenderComponent {
 				PolygonShape shape = new PolygonShape();
 				float[] vertices = boundBox.getVertices();
 				for (int i = 0; i < vertices.length; i++) {
-					vertices[0] = vertices[0] * PhysicsComponent.PIXELS_TO_METERS;
+					vertices[i] = vertices[i] * PhysicsComponent.PIXELS_TO_METERS;
 				}
-				shape.setAsBox(10 * PhysicsComponent.PIXELS_TO_METERS, 10  * PhysicsComponent.PIXELS_TO_METERS);
+				shape.set(vertices);
 				bd.type = BodyType.DynamicBody;
 				boundingBody = world.createBody(bd);
-				boundingBody.createFixture(shape, 1);
-				
+				Fixture fix = boundingBody.createFixture(shape, 1); 
 			}
 		}
 	}
@@ -94,6 +95,7 @@ public class SpineComponent extends RenderComponent {
 			}
 			skeleton.setX(boundingBody.getPosition().x * PhysicsComponent.METERS_TO_PIXELS);
 			skeleton.setY(boundingBody.getPosition().y * PhysicsComponent.METERS_TO_PIXELS);
+			skeleton.getRootBone().setRotation(boundingBody.getAngle() * MathUtils.radiansToDegrees + 90f);
 			skeleton.updateWorldTransform();
 			Matrix4 combined = new Matrix4(camera.combined);
 			
