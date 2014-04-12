@@ -4,6 +4,7 @@ import com.github.darknessrising.gameobjects.GameObject;
 import com.github.darknessrising.gameobjects.GameObjectFactory;
 import com.github.darknessrising.gameobjects.components.PhysicsComponent;
 import com.github.darknessrising.gameobjects.components.PlayerControlableComponent;
+import com.github.darknessrising.gameobjects.components.RotateToMouseComponent;
 import com.github.darknessrising.gameobjects.components.render.SpineComponent;
 import com.github.darknessrising.input.InputHelper;
 import com.github.darknessrising.maps.tools.gleed2d.Gleed2DMap;
@@ -26,7 +27,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class DarknessRisingGame implements ApplicationListener {
-	private OrthographicCamera camera;
+	public static OrthographicCamera camera;
 	public static OrthographicCamera debugCamera;
 	private SpriteBatch batch;
 	private Gleed2DMap map;
@@ -53,6 +54,7 @@ public class DarknessRisingGame implements ApplicationListener {
 		
 		player = GameObjectFactory.getSpinedCharacter("data/spines/player/exports/skeleton", world);
 		player.placeComponent("ControlComp", new PlayerControlableComponent(player));
+		player.placeComponent("FollowMouse", new RotateToMouseComponent(player));
 		phyiscsDebugRenderer = new Box2DDebugRenderer(true, true, true, true, true, true);
 		debugMapRenderer = new Gleed2dDebugRenderer();
 	}
