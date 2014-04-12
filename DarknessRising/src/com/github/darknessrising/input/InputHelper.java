@@ -5,6 +5,8 @@ import com.badlogic.gdx.InputProcessor;
 public class InputHelper implements InputProcessor {
 
 	private int mouseScroll = 0;
+	private int mousePosX;
+	private int mousePosY;
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
@@ -43,8 +45,17 @@ public class InputHelper implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
+		mousePosX = screenX;
+		mousePosY = screenY;
 		return false;
+	}
+
+	public int getMousePosX() {
+		return mousePosX;
+	}
+
+	public int getMousePosY() {
+		return mousePosY;
 	}
 
 	@Override
