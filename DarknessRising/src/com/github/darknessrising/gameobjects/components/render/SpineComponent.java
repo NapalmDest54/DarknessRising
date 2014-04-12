@@ -73,9 +73,11 @@ public class SpineComponent extends RenderComponent {
 				shape.set(vertices);
 				bd.type = BodyType.DynamicBody;
 				boundingBody = world.createBody(bd);
+				boundingBody.setFixedRotation(true);
 				Fixture fix = boundingBody.createFixture(shape, 1); 
 			}
 		}
+		
 	}
 	
 	public Body getBoundingBody() {
@@ -108,7 +110,7 @@ public class SpineComponent extends RenderComponent {
 			
 			if (DarknessRisingGame.DEBUG) {
 				debugRenderer.getShapeRenderer().getProjectionMatrix().set(camera.projection);
-				debugRenderer.draw(skeleton);
+				//debugRenderer.draw(skeleton);
 			}
 			
 			
