@@ -97,7 +97,7 @@ public class SpineComponent extends RenderComponent {
 			}
 			skeleton.setX(boundingBody.getPosition().x * PhysicsComponent.METERS_TO_PIXELS);
 			skeleton.setY(boundingBody.getPosition().y * PhysicsComponent.METERS_TO_PIXELS);
-			skeleton.getRootBone().setRotation(boundingBody.getAngle() * MathUtils.radiansToDegrees + 90f);
+			skeleton.getRootBone().setRotation(boundingBody.getAngle() * MathUtils.radiansToDegrees);
 			skeleton.updateWorldTransform();
 			Matrix4 combined = new Matrix4(camera.combined);
 			
