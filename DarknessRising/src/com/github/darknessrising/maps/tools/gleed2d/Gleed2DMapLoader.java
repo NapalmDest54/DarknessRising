@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -89,7 +90,7 @@ public class Gleed2DMapLoader {
 				}
 
 			}
-			
+
 			String itemType = item.get("xsi:type", "null");
 			if (itemType.equals("TextureItem")) {
 
@@ -232,51 +233,83 @@ public class Gleed2DMapLoader {
 			mapObject.setRotation(-rotation);
 		}
 
-		Iterator<Object> properties = mapObject.getMapProperties().getValues();
-		while (properties.hasNext()) {
-			MapProperty property = (MapProperty) properties.next();
-			if (property.getName().equalsIgnoreCase("box2d")) {
-				GameObject obj = new GameObject();
-				String des = property.getDescription();
-				BodyDef bodyDef = new BodyDef();
-				Shape shape = null;
-				BodyType type = null;
-				if (des.equalsIgnoreCase("dynamic")) {
+		MapProperty box2DProperty = (MapProperty) mapObject.getMapProperties()
+				.get("box2d");
+		if (box2DProperty != null) {
+			float density = PhysicsComponent.DEFAULT_DENSITY;
+			float friction = PhysicsComponent.DEFAULT_FRICTION;
+			float restitution = PhysicsComponent.DEFAULT_RESTITUTION;
+
+			GameObject obj = new GameObject();
+			String des = box2DProperty.getDescription();
+			BodyDef bodyDef = new BodyDef();
+			Shape shape = null;
+			BodyType type = null;
+			Object box2dType = box2DProperty.getData();
+			if (box2dType instanceof String) {
+				String typeData = (String) box2dType;
+				if (typeData.equalsIgnoreCase("dynamic")) {
 					type = BodyType.DynamicBody;
-				} else if (des.equalsIgnoreCase("kinetic")) {
+				} else if (typeData.equalsIgnoreCase("kinetic")) {
 					type = BodyType.KinematicBody;
 				} else { // treat as static
 					type = BodyType.StaticBody;
 				}
-				bodyDef.type = type;
-				bodyDef.angle = mapObject.getRotation();
-				bodyDef.position.x = mapObject.getPosition().x
-						* PhysicsComponent.PIXELS_TO_METERS;
-				bodyDef.position.y = mapObject.getPosition().y
-						* PhysicsComponent.PIXELS_TO_METERS;
-				if (mapObject instanceof CircleMapObject) {
-					shape = new CircleShape();
-					shape.setRadius(((CircleMapObject) mapObject).getRadius()
-							* PhysicsComponent.PIXELS_TO_METERS);
-				} else {
-					shape = new PolygonShape();
-					float width = ((RectangleMapObject) mapObject).getWidth()
-							* PhysicsComponent.PIXELS_TO_METERS / 2f;
-					float height = ((RectangleMapObject) mapObject).getHeight()
-							* PhysicsComponent.PIXELS_TO_METERS / 2f;
-					((PolygonShape) shape).setAsBox(width, height);
-					bodyDef.position.x += width;
-					bodyDef.position.y -= height;
-				}
-
-				MapObjectUpdater update = new MapObjectUpdater(obj, mapObject);
-				Body body = world.createBody(bodyDef);
-				body.createFixture(shape, 1);
-
-				PhysicsComponent physicsComp = new PhysicsComponent(obj, body);
-				obj.placeComponent("PhysicsComp", physicsComp);
-				obj.placeComponent("MapObjectUpdater", physicsComp);
 			}
+			try {
+				if (mapObject.getMapProperties().get("box2dFriction") != null) {
+					friction = Float
+							.parseFloat((String) ((MapProperty) mapObject
+									.getMapProperties().get("box2dFriction"))
+									.getData());
+				}
+				if (mapObject.getMapProperties().get("box2dDensity") != null) {
+					friction = Float
+							.parseFloat((String) ((MapProperty) mapObject
+									.getMapProperties().get("box2dFriction"))
+									.getData());
+				}
+				if (mapObject.getMapProperties().get("box2dRestitution") != null) {
+					friction = Float
+							.parseFloat((String) ((MapProperty) mapObject
+									.getMapProperties().get("box2dFriction"))
+									.getData());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			bodyDef.type = type;
+			bodyDef.angle = mapObject.getRotation();
+			bodyDef.position.x = mapObject.getPosition().x
+					* PhysicsComponent.PIXELS_TO_METERS;
+			bodyDef.position.y = mapObject.getPosition().y
+					* PhysicsComponent.PIXELS_TO_METERS;
+			if (mapObject instanceof CircleMapObject) {
+				shape = new CircleShape();
+				shape.setRadius(((CircleMapObject) mapObject).getRadius()
+						* PhysicsComponent.PIXELS_TO_METERS);
+			} else {
+				shape = new PolygonShape();
+				float width = ((RectangleMapObject) mapObject).getWidth()
+						* PhysicsComponent.PIXELS_TO_METERS / 2f;
+				float height = ((RectangleMapObject) mapObject).getHeight()
+						* PhysicsComponent.PIXELS_TO_METERS / 2f;
+				((PolygonShape) shape).setAsBox(width, height);
+				bodyDef.position.x += width;
+				bodyDef.position.y -= height;
+			}
+
+			MapObjectUpdater update = new MapObjectUpdater(obj, mapObject);
+			Body body = world.createBody(bodyDef);
+			Fixture fix = body.createFixture(shape, 1);
+			fix.setDensity(density);
+			fix.setRestitution(restitution);
+			fix.setFriction(friction);
+
+			PhysicsComponent physicsComp = new PhysicsComponent(obj, body);
+			obj.placeComponent("PhysicsComp", physicsComp);
+			obj.placeComponent("MapObjectUpdater", physicsComp);
 		}
 	}
 
