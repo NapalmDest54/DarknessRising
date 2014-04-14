@@ -18,6 +18,12 @@ public class PhysicsComponent extends Component implements EventHandler {
 	public static final float PIXELS_TO_METERS = 1/100f;
 	public static final float METERS_TO_PIXELS = 100f;
 	
+	
+	public static final float DEFAULT_DENSITY = 2f;
+	public static final float DEFAULT_FRICTION = 0.5f;
+	public static final float DEFAULT_RESTITUTION = 0.5f;
+	
+	
 	public PhysicsComponent(GameObject owner, Body body) {
 		super(owner);
 		this.body = body;
@@ -53,7 +59,6 @@ public class PhysicsComponent extends Component implements EventHandler {
 			}
 		} else if (event.getType().equals("EVENT_FORCE_CHANGE_ROTATION")) {
 			if (event.getParams()[0].equals(owner)) {
-				System.out.println("happening: " + (Float) event.getParams()[1] * MathUtils.radiansToDegrees);
 				body.setTransform(body.getPosition(), (Float) event.getParams()[1]);
 			}
 		}
