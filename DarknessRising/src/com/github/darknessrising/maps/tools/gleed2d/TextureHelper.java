@@ -20,8 +20,7 @@ public class TextureHelper implements Disposable {
 	}
 	
 	public void loadAndAdd(int key, String texture) {
-		
-		textureMap.put(key, new Texture(Gdx.files.internal(texture)));
+		textureMap.put(key, new Texture(Gdx.files.internal(texture), true));
 	}
 
 	@Override

@@ -2,8 +2,10 @@ package com.github.darknessrising.maps.tools.gleed2d;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
@@ -98,6 +100,7 @@ public class Tile {
 				- sprite.getHeight() / 2);
 		sprite.setColor(colorTint);
 		sprite.flip(flipHorizontally, flipVertically);
+		sprite.getTexture().setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 	}
 
 	public void render(SpriteBatch spriteBatch, TextureHelper textureHelper) {
