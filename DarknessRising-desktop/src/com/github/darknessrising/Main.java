@@ -10,6 +10,8 @@ public class Main {
 		cfg.width = 800;
 		cfg.height = 600;
 		cfg.samples = 4;
+		cfg.vSyncEnabled = false;
+		cfg.foregroundFPS = 800;
 		new LwjglApplication(new DarknessRisingGame(), cfg);
 	}
 }
