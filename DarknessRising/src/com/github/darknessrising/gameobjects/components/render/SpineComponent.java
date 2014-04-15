@@ -75,6 +75,9 @@ public class SpineComponent extends RenderComponent {
 				boundingBody = world.createBody(bd);
 				boundingBody.setFixedRotation(true);
 				Fixture fix = boundingBody.createFixture(shape, 1); 
+				fix.setDensity(PhysicsComponent.DEFAULT_DENSITY);
+				fix.setFriction(PhysicsComponent.DEFAULT_FRICTION);
+				fix.setRestitution(PhysicsComponent.DEFAULT_RESTITUTION);
 			}
 		}
 		
