@@ -9,7 +9,7 @@ public class Main {
 		cfg.title = "DarknessRising";
 		cfg.width = 800;
 		cfg.height = 600;
-		
+		cfg.samples = 4;
 		new LwjglApplication(new DarknessRisingGame(), cfg);
 	}
 }
