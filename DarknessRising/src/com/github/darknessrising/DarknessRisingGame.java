@@ -81,6 +81,8 @@ public class DarknessRisingGame implements ApplicationListener {
 			debugCamera.position.y = camera.position.y * 1/100f;
 			debugCamera.update(true);
 			phyiscsDebugRenderer.render(world, debugCamera.combined);
+			
+			System.out.println(Gdx.graphics.getFramesPerSecond());
 		}
 		
 		camera.zoom += ((InputHelper) Gdx.input.getInputProcessor()).getMouseScroll() / 25f;
@@ -93,7 +95,7 @@ public class DarknessRisingGame implements ApplicationListener {
 		((InputHelper) Gdx.input.getInputProcessor()).tick();
 		
 		
-		world.step(1/60f, 6, 2);
+		world.step(Gdx.graphics.getDeltaTime(), 6, 2);
 	}
 
 	@Override
